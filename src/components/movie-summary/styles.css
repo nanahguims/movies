@@ -1,0 +1,14 @@
+.movie-summary-container {
+  max-width: 1252px;
+  margin: 0 auto;
+}
+
+.movie-summary {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.movie-image {
+  max-width: 200px;
+}
