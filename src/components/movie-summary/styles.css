@@ -1,5 +1,8 @@
 .movie-summary-container {
+  max-width: 1252px;
+  margin: 0 auto;
   display: flex;
+  gap: 30px;
 }
 
 .movie-summary {
@@ -9,19 +12,42 @@
 
 .movie-summary-item {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
+.movie-item {
+  background: #ffff;
+  border-radius: 2px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+  max-width: 310px;
+}
+
 .movie-image {
-  max-width: 200px;
+  max-width: 310px;
+}
+
+.movie-title {
+  margin: 10px;
+}
+
+.movie-subtitle {
+  margin: 0 10px;
+}
+
+.movie-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
 .pagination {
   display: inline-flex;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0;
+  background: #fff;
 }
 
 .page-item {

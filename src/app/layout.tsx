@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Jost } from "next/font/google";
 import "./globals.css";
+import { SearchProvider } from "../../utils/SearchContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const jost = Jost({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Studio Ghibli Movies",
@@ -24,8 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body className={jost.className}>
+        <SearchProvider>{children}</SearchProvider>
       </body>
     </html>
   );

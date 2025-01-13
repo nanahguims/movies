@@ -2,11 +2,16 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Movies } from "@/types/interfaces";
+import { Filter } from "../filter/Filter";
+import { useSearch } from "../../../utils/SearchContext";
 import "./styles.css";
-import { Movies } from "@/types/movies";
 
 export const MovieSummary = () => {
   const [movies, setMovies] = useState<Movies[]>([]);
+  const { searchTerm } = useSearch();
+  const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(15);
   const [selectedDirectors, setSelectedDirectors] = useState<string[]>([]);
@@ -37,8 +42,7 @@ export const MovieSummary = () => {
 
   console.log(movies);
 
-  // Filtro
-
+  // ----->  Filtro
   const yearRanges = [
     "1980–1990",
     "1991–2000",
@@ -72,6 +76,7 @@ export const MovieSummary = () => {
     const movieCategory = categorizeYear(movieYear);
 
     return (
+      movie.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
       (selectedYearRanges.length === 0 ||
         selectedYearRanges.includes(movieCategory)) &&
       (selectedDirectors.length === 0 ||
@@ -81,10 +86,10 @@ export const MovieSummary = () => {
     );
   });
 
-  const directors = [...new Set(filteredMovies.map((movie) => movie.director))];
-  const producers = [...new Set(filteredMovies.map((movie) => movie.producer))];
+  const directors = [...new Set(movies.map((movie) => movie.director))];
+  const producers = [...new Set(movies.map((movie) => movie.producer))];
 
-  // Pagination
+  // ----> Pagination
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = filteredMovies.slice(firstIndex, lastIndex);
@@ -96,9 +101,9 @@ export const MovieSummary = () => {
       const width = window.innerWidth;
 
       if (width > 990) {
-        setRecordsPerPage(8);
+        setRecordsPerPage(6);
       } else {
-        setRecordsPerPage(5);
+        setRecordsPerPage(4);
       }
     };
 
@@ -141,54 +146,18 @@ export const MovieSummary = () => {
 
   return (
     <section className="movie-summary-container">
-      <div className="filter">
-        <div>
-          <h2>Filtrar</h2>
-          <div>
-            <h3>Diretor</h3>
-            {directors.map((director, index) => (
-              <label key={index} style={{ display: "block" }}>
-                <input
-                  type="checkbox"
-                  checked={selectedDirectors.includes(director)}
-                  onChange={() =>
-                    toggleSelection(director, setSelectedDirectors)
-                  }
-                />
-                {director}
-              </label>
-            ))}
-          </div>
-          <div>
-            <h3>Produtor</h3>
-            {producers.map((producer, index) => (
-              <label key={index} style={{ display: "block" }}>
-                <input
-                  type="checkbox"
-                  checked={selectedProducers.includes(producer)}
-                  onChange={() =>
-                    toggleSelection(producer, setSelectedProducers)
-                  }
-                />
-                {producer}
-              </label>
-            ))}
-          </div>
-          <div>
-            <h3>Ano de lançamento</h3>
-            {yearRanges.map((range, index) => (
-              <label key={index} style={{ display: "block" }}>
-                <input
-                  type="checkbox"
-                  checked={selectedYearRanges.includes(range)}
-                  onChange={() => toggleSelection(range, setSelectedYearRanges)}
-                />
-                {range}
-              </label>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Filter
+        directors={directors}
+        producers={producers}
+        yearRanges={yearRanges}
+        selectedDirectors={selectedDirectors}
+        selectedProducers={selectedProducers}
+        selectedYearRanges={selectedYearRanges}
+        toggleSelection={toggleSelection}
+        setSelectedDirectors={setSelectedDirectors}
+        setSelectedProducers={setSelectedProducers}
+        setSelectedYearRanges={setSelectedYearRanges}
+      />
       <div className="movie-summary">
         <div className="movie-summary-item">
           {records.length !== 0 ? (
@@ -197,6 +166,18 @@ export const MovieSummary = () => {
                 <div className="movie-item" key={movie.id}>
                   <img className="movie-image" src={movie.image} alt="" />
                   <h1 className="movie-title">{movie.title}</h1>
+                  <p className="movie-subtitle">
+                    {movie.original_title_romanised}
+                  </p>
+                  <div className="movie-link">
+                    <p className="paragraph-text">{movie.release_date}</p>
+                    <button
+                      className="button-default"
+                      onClick={() => router.push(`/movies/${movie.id}`)}
+                    >
+                      Ver mais
+                    </button>
+                  </div>
                 </div>
               ))}
             </>
