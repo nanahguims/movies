@@ -1,0 +1,12 @@
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  background: #cfc6d3;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.header-container img {
+  max-width: 50px;
+}
