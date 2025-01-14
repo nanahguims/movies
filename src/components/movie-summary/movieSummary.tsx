@@ -1,5 +1,3 @@
-"use client";
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -15,7 +13,6 @@ export const MovieSummary = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(15);
   const [selectedDirectors, setSelectedDirectors] = useState<string[]>([]);
-  const [selectedProducers, setSelectedProducers] = useState<string[]>([]);
   const [selectedYearRanges, setSelectedYearRanges] = useState<string[]>([]);
   const [activePrePage, setActivePrePage] = useState(true);
   const [activeCurrentPage, setActiveCurrentPage] = useState(true);
@@ -80,14 +77,11 @@ export const MovieSummary = () => {
       (selectedYearRanges.length === 0 ||
         selectedYearRanges.includes(movieCategory)) &&
       (selectedDirectors.length === 0 ||
-        selectedDirectors.includes(movie.director)) &&
-      (selectedProducers.length === 0 ||
-        selectedProducers.includes(movie.producer))
+        selectedDirectors.includes(movie.director))
     );
   });
 
   const directors = [...new Set(movies.map((movie) => movie.director))];
-  const producers = [...new Set(movies.map((movie) => movie.producer))];
 
   // ----> Pagination
   const lastIndex = currentPage * recordsPerPage;
@@ -144,35 +138,38 @@ export const MovieSummary = () => {
     }
   }
 
+  const totalMovies = filteredMovies.length;
+
   return (
     <section className="movie-summary-container">
       <Filter
         directors={directors}
-        producers={producers}
         yearRanges={yearRanges}
         selectedDirectors={selectedDirectors}
-        selectedProducers={selectedProducers}
         selectedYearRanges={selectedYearRanges}
         toggleSelection={toggleSelection}
         setSelectedDirectors={setSelectedDirectors}
-        setSelectedProducers={setSelectedProducers}
         setSelectedYearRanges={setSelectedYearRanges}
       />
+
       <div className="movie-summary">
+        <p className="total-movies-text"> {totalMovies} filmes encontrados</p>
         <div className="movie-summary-item">
           {records.length !== 0 ? (
             <>
               {records.map((movie) => (
                 <div className="movie-item" key={movie.id}>
                   <img className="movie-image" src={movie.image} alt="" />
-                  <h1 className="movie-title">{movie.title}</h1>
-                  <p className="movie-subtitle">
-                    {movie.original_title_romanised}
-                  </p>
-                  <div className="movie-link">
-                    <p className="paragraph-text">{movie.release_date}</p>
+                  <div className="movie-descriptions">
+                    <h1 className="movie-title">{movie.title}</h1>
+                    <p className="movie-subtitle">
+                      {movie.original_title_romanised}
+                    </p>
+                    <p className="paragraph-text movie-date">
+                      {movie.release_date}
+                    </p>
                     <button
-                      className="button-default"
+                      className="button-default movie-btn"
                       onClick={() => router.push(`/movies/${movie.id}`)}
                     >
                       Ver mais
@@ -182,7 +179,7 @@ export const MovieSummary = () => {
               ))}
             </>
           ) : (
-            "carregando"
+            "Nenhum filme encontrado"
           )}
         </div>
         <ul className="pagination">

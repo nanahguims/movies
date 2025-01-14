@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Jost } from "next/font/google";
+import { Raleway } from "next/font/google";
 import "./globals.css";
 import { SearchProvider } from "../../utils/SearchContext";
 
-const jost = Jost({ subsets: ["latin"] });
+const raleway = Raleway({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Studio Ghibli Movies",
@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="./favicon.ico" sizes="any" />
       </head>
-      <body className={jost.className}>
+      <body className={raleway.className}>
         <SearchProvider>{children}</SearchProvider>
       </body>
     </html>

@@ -2,64 +2,98 @@
 
 import React from "react";
 import { FilterProps } from "@/types/interfaces";
+import { useMediaQuery } from "react-responsive";
+import BurgerMenuComponent from "../buger-menu/BugerMenu";
+
 import "./styles.css";
 
 export const Filter: React.FC<FilterProps> = ({
   directors,
-  producers,
   yearRanges,
   selectedDirectors,
-  selectedProducers,
   selectedYearRanges,
   toggleSelection,
   setSelectedDirectors,
-  setSelectedProducers,
   setSelectedYearRanges,
 }) => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
-    <div className="filter-container">
-      <h2>Filtrar</h2>
-      <div className="filter">
-        <div className="filter-item">
-          <h3 className="filter-name">Diretor</h3>
-          {directors.map((director, index) => (
-            <label key={index} style={{ display: "block" }}>
-              <input
-                type="checkbox"
-                checked={selectedDirectors.includes(director)}
-                onChange={() => toggleSelection(director, setSelectedDirectors)}
-              />
-              {director}
-            </label>
-          ))}
+    <>
+      {!isTabletOrMobile ? (
+        <div className="filter-container">
+          <h2 className="filter-title">Filtrar</h2>
+          <div className="filter">
+            <div className="filter-item">
+              <h3 className="filter-name">Diretor</h3>
+              {directors.map((director, index) => (
+                <label key={index}>
+                  <input
+                    type="checkbox"
+                    checked={selectedDirectors.includes(director)}
+                    onChange={() =>
+                      toggleSelection(director, setSelectedDirectors)
+                    }
+                  />
+                  {director}
+                </label>
+              ))}
+            </div>
+
+            <div className="filter-item">
+              <h3 className="filter-name">Ano de lançamento</h3>
+              {yearRanges.map((range, index) => (
+                <label key={index}>
+                  <input
+                    type="checkbox"
+                    checked={selectedYearRanges.includes(range)}
+                    onChange={() =>
+                      toggleSelection(range, setSelectedYearRanges)
+                    }
+                  />
+                  {range}
+                </label>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="filter-item">
-          <h3 className="filter-name">Produtor</h3>
-          {producers.map((producer, index) => (
-            <label key={index} style={{ display: "block" }}>
-              <input
-                type="checkbox"
-                checked={selectedProducers.includes(producer)}
-                onChange={() => toggleSelection(producer, setSelectedProducers)}
-              />
-              {producer}
-            </label>
-          ))}
-        </div>
-        <div className="filter-item">
-          <h3 className="filter-name">Ano de lançamento</h3>
-          {yearRanges.map((range, index) => (
-            <label key={index} style={{ display: "block" }}>
-              <input
-                type="checkbox"
-                checked={selectedYearRanges.includes(range)}
-                onChange={() => toggleSelection(range, setSelectedYearRanges)}
-              />
-              {range}
-            </label>
-          ))}
-        </div>
-      </div>
-    </div>
+      ) : (
+        <BurgerMenuComponent>
+          <h2>Filtrar</h2>
+          <div className="filter-mobile">
+            <div className="filter-item">
+              <h3 className="filter-name">Diretor</h3>
+              {directors.map((director, index) => (
+                <label key={index}>
+                  <input
+                    type="checkbox"
+                    checked={selectedDirectors.includes(director)}
+                    onChange={() =>
+                      toggleSelection(director, setSelectedDirectors)
+                    }
+                  />
+                  {director}
+                </label>
+              ))}
+            </div>
+
+            <div className="filter-item">
+              <h3 className="filter-name">Ano de lançamento</h3>
+              {yearRanges.map((range, index) => (
+                <label key={index}>
+                  <input
+                    type="checkbox"
+                    checked={selectedYearRanges.includes(range)}
+                    onChange={() =>
+                      toggleSelection(range, setSelectedYearRanges)
+                    }
+                  />
+                  {range}
+                </label>
+              ))}
+            </div>
+          </div>
+        </BurgerMenuComponent>
+      )}
+    </>
   );
 };

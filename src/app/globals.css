@@ -5,20 +5,20 @@ body {
 }
 
 body {
-  color: var(--foreground);
   background: #fcf6f2;
-  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .button-default {
-  background: #b76443;
+  background: #926836;
   border: none;
-  width: 80px;
-  padding: 5px;
+
+  max-width: 100px;
+  width: 100%;
+  padding: 10px;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 3px;
   cursor: pointer;
 }
 

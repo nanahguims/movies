@@ -1,6 +1,12 @@
+.total-movies-text {
+  margin: 10px 0;
+  color: #3d3d3d;
+}
+
 .movie-summary-container {
+  position: relative;
   max-width: 1252px;
-  margin: 0 auto;
+  margin: 150px auto 0 auto;
   display: flex;
   gap: 30px;
 }
@@ -17,29 +23,48 @@
 }
 
 .movie-item {
+  position: relative;
   background: #ffff;
   border-radius: 2px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
-  max-width: 310px;
+  width: 100%;
 }
 
 .movie-image {
-  max-width: 310px;
+  padding: 20px 20px 0 20px;
+  max-width: 100%;
+}
+
+.movie-descriptions {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 
 .movie-title {
-  margin: 10px;
+  font-size: 16px;
+  grid-column-start: -1;
+  grid-column-end: 1;
+  grid-row-start: 1;
 }
 
 .movie-subtitle {
-  margin: 0 10px;
+  font-size: 14px;
+  display: flex;
+  grid-column-start: -1;
+  grid-column-end: 1;
+  grid-row-start: 2;
 }
 
-.movie-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
+.movie-date {
+  grid-row: 3;
+  /* margin-top: auto; */
+}
+
+.movie-btn {
+  grid-row: 3;
+  max-width: 100%;
 }
 
 .pagination {
@@ -47,10 +72,10 @@
   list-style: none;
   padding: 0;
   margin: 20px 0;
-  background: #fff;
 }
 
 .page-item {
+  background: #fff;
   display: inline-block;
   border: 1px solid #ddd;
   padding: 8px 12px;
@@ -71,8 +96,8 @@
 }
 
 .page-item.active {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #926836;
+  border-color: #926836;
   color: #fff;
 }
 
@@ -83,4 +108,42 @@
 .page-link {
   background: transparent;
   border: none;
+}
+
+@media (max-width: 1224px) {
+  .movie-summary-container {
+    margin-top: 160px;
+    flex-direction: column;
+  }
+
+  .total-movies-text {
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+
+  .movie-summary-item {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 10px;
+  }
+
+  .movie-item {
+    max-width: 100%;
+  }
+
+  .movie-image {
+    max-width: 100%;
+    padding: 10px 10px 0 10px;
+  }
+
+  .movie-btn {
+    padding: 0;
+    color: #926836;
+    background: transparent;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
 }

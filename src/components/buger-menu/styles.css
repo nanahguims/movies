@@ -1,0 +1,73 @@
+.bm-burger-button {
+  z-index: 1 !important;
+  position: relative;
+  width: 36px;
+  height: 30px;
+  margin-left: 20px;
+}
+
+#react-burger-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #fff !important;
+  width: 100px !important;
+  height: 44px !important;
+  border-radius: 2px;
+  border: 1px solid #926836 !important;
+}
+
+#react-burger-menu-btn::before {
+  height: 24px;
+  width: 24px;
+  content: "";
+  background-image: url("/filter-icon.svg");
+}
+
+#react-burger-menu-btn::after {
+  content: "Filtrar";
+  font-size: 14px;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: #bdc3c7;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.bm-menu {
+  background: white;
+  padding: 1.5em 0;
+  font-size: 1.15em;
+}
+
+.bm-item-list {
+  color: #353535;
+  padding: 0.8em;
+}
+
+.bm-item {
+  display: inline-block;
+  color: #353535;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.bm-overlay {
+  top: 0;
+  background: #000000b2;
+}

@@ -9,9 +9,32 @@
   padding: 0 10px;
 }
 
+.filter-title {
+  margin-bottom: 10px;
+}
+
 .filter-item {
   padding: 10px;
   border-bottom: 1px solid #e3e4e6;
+}
+
+.filter-item label {
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0;
+  gap: 5px;
+}
+
+.filter-item input {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.filter-item input:checked {
+  accent-color: #926836;
 }
 
 .filter-name {
