@@ -22,7 +22,7 @@
   height: 24px;
   width: 24px;
   content: "";
-  background-image: url("/filter-icon.svg");
+  background-image: url("./filter-icon.svg");
 }
 
 #react-burger-menu-btn::after {
