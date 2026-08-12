@@ -1,9 +1,13 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-import { SearchContextProps } from "@/types/interfaces";
 
-const SearchContext = createContext<SearchContextProps | undefined>(undefined);
+export interface SearchContextType {
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
 export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
