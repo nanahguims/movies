@@ -3,13 +3,15 @@
 import React from "react";
 import Link from "next/link";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-footer border-t border-ghibli-800 mt-auto">
       <div className="w-full section-container flex items-center justify-center sm:justify-between flex-wrap sm:gap-4 py-8">
         <Link href="/" className="flex items-center">
           <img
-            src="/susuwatari.png"
+            src={`${basePath}/susuwatari.png`}
             alt="Studio Ghibli"
             className="h-20 w-auto"
           />
@@ -33,7 +35,11 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col items-center gap-5">
-          <img src="/totoro.png" alt="Studio Ghibli" className="h-8 w-auto" />
+          <img
+            src={`${basePath}/totoro.png`}
+            alt="Studio Ghibli"
+            className="h-8 w-auto"
+          />
           <p className="text-sm text-ghibli-400">
             Feito com ♡ para fâs do studio
           </p>

@@ -3,11 +3,9 @@
 import React, { useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Header } from "@/components/layout/Header";
-import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import {
   LoadingState,
-  ErrorState,
   MovieNotFound,
 } from "@/components/common/StateComponents";
 import { RelatedMovies } from "@/components/movies/RelatedMovies";
@@ -15,7 +13,6 @@ import { useMovieById } from "@/hooks/useMovieById";
 import { useMovies } from "@/hooks/useMovies";
 import { relatedMoviesService } from "@/services/related-movies";
 import { formatYear } from "@/utils/formatting";
-import { Footer } from "@/components/layout/Footer";
 
 export default function MovieDetailsPage() {
   const params = useParams<{ id: string }>();

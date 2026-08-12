@@ -6,13 +6,14 @@ import { FiltersProvider } from "@/context/FiltersContext";
 import { Footer } from "@/components/layout/Footer";
 
 const raleway = Raleway({ subsets: ["latin"] });
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export const metadata: Metadata = {
   title: "Studio Ghibli Movies - Catálogo de Filmes",
   description:
     "Explore o catálogo completo de filmes do Studio Ghibli com busca, filtros e detalhes cinematográficos.",
   icons: {
-    icon: "/favicon.ico",
+    icon: `${basePath}/favicon.ico`,
   },
 };
 

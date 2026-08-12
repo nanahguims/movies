@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -11,13 +13,13 @@ export const Header: React.FC = () => {
       <div className="section-container flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-4 shrink-0">
           <img
-            src="/ghibli-logo.png"
+            src={`${basePath}/ghibli-logo.png`}
             alt="Studio Ghibli"
             className="h-12 sm:h-20 w-auto"
           />
 
           <img
-            src="/logo.svg"
+            src={`${basePath}/logo.svg`}
             alt="Studio Ghibli"
             className="h-12 sm:h-20 w-auto"
           />

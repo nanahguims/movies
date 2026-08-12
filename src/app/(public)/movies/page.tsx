@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/Button";
 import { moviesService } from "@/services/ghibli/movies";
 import { sortMovies } from "@/utils/formatting";
 import { YEAR_RANGES, SORT_OPTIONS } from "@/constants/config";
-import { Footer } from "@/components/layout/Footer";
 
 export default function MoviesPage() {
   const { movies, loading, error } = useMovies();
