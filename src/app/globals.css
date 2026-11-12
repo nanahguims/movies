@@ -61,7 +61,7 @@
   }
 
   .input-base {
-    @apply w-full px-4 py-2 border-2 border-ghibli-200 rounded-lg focus:outline-none focus:border-accent-forest transition-colors duration-300;
+    @apply w-full px-4 py-2 border-2 border-ghibli-200 rounded-lg focus:outline-none outline-none bg-white;
   }
 
   .card {

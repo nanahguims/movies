@@ -10,7 +10,7 @@ module.exports = {
         background: "#fdf7ee",
         surface: "#fde6da",
         "surface-soft": "#fff8f4",
-        footer: "#412c26",
+        footer: "#c56d52",
         primary: {
           DEFAULT: "#f37f83",
           light: "#fca9a5",

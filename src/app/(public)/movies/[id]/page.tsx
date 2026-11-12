@@ -10,7 +10,9 @@ import {
 } from "@/components/common/StateComponents";
 import { RelatedMovies } from "@/components/movies/RelatedMovies";
 import { AvaliacoesDoFilme } from "@/components/avaliacoes/AvaliacoesDoFilme";
+import { NotaDoSite } from "@/components/avaliacoes/NotaDoSite";
 import { useMovieById } from "@/hooks/useMovieById";
+import { useAvaliacoes } from "@/hooks/useAvaliacoes";
 import { useMovies } from "@/hooks/useMovies";
 import { relatedMoviesService } from "@/services/related-movies";
 import { formatYear } from "@/utils/formatting";
@@ -20,6 +22,7 @@ export default function MovieDetailsPage() {
   const router = useRouter();
   const { movie, loading, error } = useMovieById(params.id);
   const { movies: allMovies } = useMovies();
+  const avaliacoes = useAvaliacoes(params.id);
 
   const relatedMovies = useMemo(() => {
     if (!movie || allMovies.length === 0) return [];
@@ -61,14 +64,14 @@ export default function MovieDetailsPage() {
         <img
           src={movie.movie_banner}
           alt={movie.title}
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-contain opacity-60"
         />
         <div className="absolute inset-0 bg-linear-to-t from-ghibli-900 via-transparent to-transparent" />
 
         {/* Back Button */}
         <button
           onClick={() => router.back()}
-          className="absolute top-6 left-6 z-10 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-2 rounded-lg transition-all"
+          className="absolute top-6 left-6 z-10 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white p-2 rounded-lg transition-all cursor-pointer"
         >
           <svg
             className="w-6 h-6"
@@ -147,8 +150,8 @@ export default function MovieDetailsPage() {
                 {movie.description}
               </p>
 
-              <div className="mt-6 space-y-4 flex p-4">
-                <div>
+              <div className="mt-6 flex flex-wrap gap-10">
+                {/* <div>
                   <p className="text-sm text-ghibli-600 mb-1">Pontuação</p>
                   <div className="flex items-center gap-2">
                     <span className="text-3xl font-bold text-accent-forest">
@@ -156,14 +159,18 @@ export default function MovieDetailsPage() {
                     </span>
                     <span className="text-2xl">★</span>
                   </div>
-                </div>
+                </div> */}
+                <NotaDoSite
+                  avaliacoes={avaliacoes.avaliacoes}
+                  carregando={avaliacoes.carregando}
+                />
               </div>
             </div>
           </div>
         </div>
 
         {/* Avaliações (CRUD) */}
-        <AvaliacoesDoFilme movie={movie} />
+        <AvaliacoesDoFilme movie={movie} {...avaliacoes} />
 
         {/* Related Movies */}
         {relatedMovies.length > 0 && <RelatedMovies movies={relatedMovies} />}

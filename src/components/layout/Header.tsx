@@ -12,11 +12,11 @@ export const Header: React.FC = () => {
     <header className="bg-white shadow-card sticky top-0 z-50">
       <div className="section-container flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-4 shrink-0">
-          <img
+          {/* <img
             src={`${basePath}/ghibli-logo.png`}
             alt="Studio Ghibli"
             className="h-12 sm:h-20 w-auto"
-          />
+          /> */}
 
           <img
             src={`${basePath}/logo.svg`}
