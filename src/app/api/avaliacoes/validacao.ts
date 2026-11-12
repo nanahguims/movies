@@ -1,4 +1,3 @@
-// Validação compartilhada entre as rotas de criação e atualização.
 export function validarCampos(body: Record<string, unknown>): string | null {
   const autor = typeof body.autor === "string" ? body.autor.trim() : "";
   const nota = Number(body.nota);
