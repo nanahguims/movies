@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
+// Antes: output "export" (site estático para o GitHub Pages).
+// Agora o app roda no Vercel com back-end (rotas em src/app/api).
 const nextConfig: NextConfig = {
-  output: "export",
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
 };
 
 export default nextConfig;

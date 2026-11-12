@@ -9,6 +9,7 @@ import {
   MovieNotFound,
 } from "@/components/common/StateComponents";
 import { RelatedMovies } from "@/components/movies/RelatedMovies";
+import { AvaliacoesDoFilme } from "@/components/avaliacoes/AvaliacoesDoFilme";
 import { useMovieById } from "@/hooks/useMovieById";
 import { useMovies } from "@/hooks/useMovies";
 import { relatedMoviesService } from "@/services/related-movies";
@@ -160,6 +161,9 @@ export default function MovieDetailsPage() {
             </div>
           </div>
         </div>
+
+        {/* Avaliações (CRUD) */}
+        <AvaliacoesDoFilme movie={movie} />
 
         {/* Related Movies */}
         {relatedMovies.length > 0 && <RelatedMovies movies={relatedMovies} />}

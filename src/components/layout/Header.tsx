@@ -39,6 +39,12 @@ export const Header: React.FC = () => {
           >
             Catálogo
           </Link>
+          <Link
+            href="/avaliacoes"
+            className="text-ghibli-700 hover:text-accent-forest transition-colors"
+          >
+            Avaliações
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -76,6 +82,12 @@ export const Header: React.FC = () => {
                 className="text-ghibli-700 hover:text-accent-forest transition-colors"
               >
                 Catálogo
+              </Link>
+              <Link
+                href="/avaliacoes"
+                className="text-ghibli-700 hover:text-accent-forest transition-colors"
+              >
+                Avaliações
               </Link>
             </nav>
           </div>
