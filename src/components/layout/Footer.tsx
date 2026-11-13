@@ -8,14 +8,31 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-footer mt-auto">
-      <div className="w-full section-container flex items-center justify-center sm:justify-between flex-wrap sm:gap-4 py-8">
-        <Link href="/" className="flex items-center">
+      <div className="w-full section-container flex items-center justify-center md:justify-between flex-wrap gap-4 py-8">
+        <Link href="/" className="flex flex-col items-center">
           <img
             src={`${basePath}/susuwatari.png`}
             alt="Studio Ghibli"
             className="h-20 w-auto"
           />
         </Link>
+
+        <div className="flex flex-col items-center gap-2">
+          <p className="mb-2 font-semibold text-ghibli-100">
+            Navegue pelo menu
+          </p>
+          <nav className="flex items-center gap-6">
+            <Link href="/" className="text-ghibli-100">
+              Home
+            </Link>
+            <Link href="/movies" className="text-ghibli-100">
+              Catálogo
+            </Link>
+            <Link href="/avaliacoes" className="text-ghibli-100">
+              Avaliações
+            </Link>
+          </nav>
+        </div>
 
         <div className="text-center">
           <p className="mb-2 font-semibold text-ghibli-100">
@@ -40,9 +57,6 @@ export const Footer: React.FC = () => {
             alt="Studio Ghibli"
             className="h-8 w-auto"
           />
-          <p className="text-sm text-ghibli-100">
-            Feito com ♡ para fâs do studio
-          </p>
         </div>
       </div>
     </footer>
